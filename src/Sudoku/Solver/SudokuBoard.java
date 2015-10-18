@@ -4,6 +4,9 @@ public class SudokuBoard {
 
 	int[][] board;
 
+	/**
+	 * Defult constructor. Creates a blank board.
+	 */
 	public SudokuBoard() {
 		board = new int[9][9];
 
@@ -14,13 +17,23 @@ public class SudokuBoard {
 		}
 	}
 
+	/**
+	 * Create new board with initial state.
+	 * 
+	 * @param init initial state of board
+	 */
 	public SudokuBoard(int[][] init) {
 		board = init;
 	}
 
 	/**
 	 * Sets position (i,j) to num if valid position. Returns true if valid.
-	 * Returns false if invalid, and does not allow change to be made
+	 * Returns false if invalid, and does not allow change to be made.
+	 * 
+	 * @param i Row
+	 * @param j Column
+	 * @return true if valid change, false otherwise 
+	 * 
 	 */
 	public boolean set(int i, int j, int num) {
 		if (num < 0 || num > 9)
@@ -40,12 +53,20 @@ public class SudokuBoard {
 	}
 
 	/**
-	 * Unsets the board positon (i,j)
+	 * Unsets the board positon (i,j).
+	 * 
+	 * @param i Row
+	 * @patam j Column
 	 */
 	public void unSet(int i, int j) {
 		board[i][j] = 0;
 	}
 
+	/**
+	 * Checks to see whether the current state of the board is valid.
+	 * 
+	 * @return whether the current state of the board is valid
+	 */
 	public boolean check() {
 		//check the rows
 		for(int row = 0; row < 9; row++) {
@@ -94,18 +115,18 @@ public class SudokuBoard {
 
 	public String toString() {
 		// really ugly code for formatting the board
-		String out = "------- ------- -------\n";
+		String out = "———————  ———————  ———————\n";
 
 		for (int i = 0; i < 9; i++) {
 			out += '|';
 			for (int j = 0; j < 9; j++) {
-				out += board[i][j] == 0 ? " " : board[i][j];
+				out += board[i][j] == 0 ? " " : board[i][j]+"";
 				out += (j + 1) % 3 == 0 ? (j != 8 ? "|  |" : "| ") : "|";
 			}
-			out += "\n-------  -------  -------\n";
+			out += "\n———————  ———————  ———————\n";
 			if ((i + 1) % 3 == 0) {
 				if (i != 8)
-					out += "\n-------  -------  -------\n";
+					out += "\n———————  ———————  ———————\n";
 				else
 					out += "\n";
 			}
@@ -116,8 +137,11 @@ public class SudokuBoard {
 	}
 
 	/**
-	 * Tells us whether we have a move that definitely must be made for (i,j)
-	 * Returns the value (i,j) must take. 0 if undecidable
+	 * If (i,j) definitely needs to take on a given value to solve the board, set that
+	 * as the value. Otherwise, do nothing.
+	 * 
+	 * @param i Row
+	 * @param j Column
 	 */
 	public void definiteMove(int i, int j) {
 
@@ -145,10 +169,21 @@ public class SudokuBoard {
 
 	}
 
+	/**
+	 * Get the value at (i,j).
+	 * @param i Row
+	 * @param j Column
+	 * @return 0 if empty, otherwise the number written at the location
+	 */
 	public int getNum(int i, int j) {
 		return board[i][j];
 	}
 
+	/**
+	 * Return the state of the board as a double array
+	 * 
+	 * @return The state of the board
+	 */
 	public int[][] getState() {
 		int[][] state = new int[9][9];
 
@@ -161,6 +196,10 @@ public class SudokuBoard {
 		return state;
 	}
 
+	/**
+	 * Set the state of the board.
+	 * @param state The state of the board as an array
+	 */
 	public void setState(int[][] state) {
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -170,7 +209,7 @@ public class SudokuBoard {
 	}
 
 	/**
-	 * Returns whether the board is solved
+	 * Returns whether the board is solved.
 	 * 
 	 * @return
 	 */
