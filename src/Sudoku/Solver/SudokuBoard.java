@@ -143,11 +143,12 @@ public class SudokuBoard {
 	 * @param i Row
 	 * @param j Column
 	 */
-	public void definiteMove(int i, int j) {
+	public boolean definiteMove(int i, int j) {
 
+	    
 		// only try to make a move if this spot hasn't been set already
 		if (board[i][j] != 0)
-			return;
+			return false;
 
 		int count = 0;
 
@@ -166,6 +167,8 @@ public class SudokuBoard {
 				}
 			}
 		}
+		
+		return (count == 1);
 
 	}
 

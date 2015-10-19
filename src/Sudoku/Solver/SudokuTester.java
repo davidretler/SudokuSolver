@@ -21,7 +21,7 @@ public class SudokuTester {
                 { 8, 0, 0, 0, 0, 9, 3, 0, 6 },
                 { 0, 3, 0, 6, 0, 0, 7, 0, 0 } };
 
-        SudokuBoard myBoard = new SudokuBoard(initial);
+        SudokuBoard myBoard = new SudokuBoard(/*initial*/);
 
         System.out.println(myBoard);
         
@@ -74,7 +74,9 @@ public class SudokuTester {
         // make sure to save state before making moves
         int[][] oldState = board.getState();
 
-        makeDefiniteMoves(board);
+        while(makeDefiniteMoves(board)){
+            // keep making definite moves until none left
+        }
 
         if (board.getNum(i, j) == 0) {
             // try each number for current configuration, if not already solved
@@ -123,14 +125,21 @@ public class SudokuTester {
     /**
      * Makes moves to the board that we can be certain must be made
      */
-    private static void makeDefiniteMoves(SudokuBoard board) {
+    private static boolean makeDefiniteMoves(SudokuBoard board) {
+        
+        boolean move = false;
+        
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (board.getNum(i, j) == 0) {
-                    board.definiteMove(i, j);
+                    if(board.definiteMove(i, j)) {
+                        move = true;
+                    }
                 }
             }
         }
+        
+        return move;
     }
 
 }
