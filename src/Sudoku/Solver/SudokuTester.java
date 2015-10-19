@@ -1,26 +1,31 @@
 package Sudoku.Solver;
 
+
 public class SudokuTester {
 
     static int calls = 0;
 
     public static void main(String[] args) {
         
+        long start, stop;
+        
         int[][] initial = new int[][]
             {
-                { 0, 0, 0, 0, 9, 0, 0, 0, 4 },
-                { 4, 1, 0, 0, 0, 3, 0, 0, 0 },
-                { 8, 0, 7, 6, 0, 4, 2, 1, 0 },
-                { 0, 0, 1, 0, 0, 7, 0, 0, 2 },
-                { 0, 6, 0, 0, 4, 0, 0, 9, 0 },
-                { 2, 0, 0, 5, 0, 0, 7, 0, 0 },
-                { 0, 4, 8, 3, 0, 6, 9, 0, 7 },
-                { 0, 0, 0, 4, 0, 0, 0, 2, 1 },
-                { 6, 0, 0, 0, 1, 0, 0, 0, 0 } };
+                { 0, 0, 3, 0, 0, 8, 0, 2, 0 },
+                { 6, 0, 0, 3, 0, 0, 0, 0, 9 },
+                { 0, 9, 0, 7, 0, 0, 1, 0, 4 },
+                { 9, 0, 0, 2, 0, 0, 5, 4, 3 },
+                { 0, 8, 0, 4, 0, 1, 0, 0, 0 },
+                { 4, 6, 2, 0, 0, 7, 0, 0, 1 },
+                { 1, 0, 6, 0, 0, 3, 0, 9, 0 },
+                { 8, 0, 0, 0, 0, 9, 3, 0, 6 },
+                { 0, 3, 0, 6, 0, 0, 7, 0, 0 } };
 
         SudokuBoard myBoard = new SudokuBoard(initial);
 
         System.out.println(myBoard);
+        
+        start = System.nanoTime();
         try {
             if (solve(myBoard)) {
                 System.out.println("\nSolved!\n" + myBoard);
@@ -30,9 +35,9 @@ public class SudokuTester {
         } catch (StackOverflowError e) {
             System.out.println("\nOveflow while solving. Partial output:\n" + myBoard);
         }
+        stop = System.nanoTime();
+        System.out.println(calls + " recursive calls\n" + (stop-start)/1000000 + " ms");
 
-        System.out.println(calls + " recursive calls");
-        
     }
 
     /**
