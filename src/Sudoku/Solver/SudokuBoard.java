@@ -145,6 +145,7 @@ public class SudokuBoard {
 	 */
 	public boolean definiteMove(int i, int j) {
 
+	    boolean move = false;
 	    
 		// only try to make a move if this spot hasn't been set already
 		if (board[i][j] != 0)
