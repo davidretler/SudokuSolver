@@ -20,7 +20,7 @@ public class SudokuTester {
                 { 8, 0, 0, 0, 0, 9, 3, 0, 6 },
                 { 0, 3, 0, 6, 0, 0, 7, 0, 0 } };
 
-        SudokuBoard myBoard = new SudokuBoard(/* initial */);
+        SudokuBoard myBoard = new SudokuBoard(/*initial*/);
 
         System.out.println(myBoard);
 
