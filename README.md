@@ -1,4 +1,4 @@
-# Sudoku Solved
+# Sudoku Solver
 
 ## Introduction
 
